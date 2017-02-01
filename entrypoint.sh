@@ -1,14 +1,12 @@
 #!/bin/bash
 
 # Prechecks
-if [ -z "$SHOPWARE_RELEASE_URL" ]
-then
+if [ -z "$SHOPWARE_RELEASE_URL" ] ; then
 	echo "Variable SHOPWARE_RELEASE_URL is not set. Exiting."
 	exit 1
 fi
 
-if [ -z "$EXTRACT_PATH" ]
-then
+if [ -z "$EXTRACT_PATH" ] ; then
 	echo "Variable EXTRACT_PATH is not set. Exiting."
 	exit 1
 fi
@@ -21,8 +19,7 @@ echo "Done."
 cd /tmp
 
 
-if [ ! -f "shopware.zip" ];
-then
+if [ ! -f "shopware.zip" ] ; then
 	echo "Downloading Shopware release from $SHOPWARE_RELEASE_URL."
 	wget -q $SHOPWARE_RELEASE_URL -O shopware.zip
 fi
@@ -34,6 +31,7 @@ echo "Setting correct chmods in $EXTRACT_PATH."
 cd $EXTRACT_PATH
 chmod 777 config.php
 chmod 777 -R cache/
+chmod 777 -R custom/
 chmod 777 -R files/
 chmod 777 -R media/
 chmod 777 -R engine/Shopware/Plugins/Community/
@@ -44,5 +42,14 @@ chmod 777 -R recovery/
 chmod 777 -R themes/Frontend/
 chmod 777 -R recovery/install/data/
 chmod 777 -R var/
+
+if [ ! "$FULL_WIPE_ON_REBOOT" = "true" ] ; then
+    touch $EXTRACT_PATH/recovery/install/data/install.lock
+else
+    for i in {1..10}
+    do
+       echo "!!! WARNING: Env variable FULL_WIPE_ON_REBOOT is set!!!"
+    done
+fi
 
 echo "Done."
