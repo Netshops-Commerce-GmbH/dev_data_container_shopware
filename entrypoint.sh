@@ -30,4 +30,19 @@ fi
 echo "Extracting Shopware release to $EXTRACT_PATH."
 unzip -qq -u shopware.zip -d $EXTRACT_PATH
 
+echo "Setting correct chmods in $EXTRACT_PATH."
+cd $EXTRACT_PATH
+chmod 777 config.php
+chmod 777 -R cache/
+chmod 777 -R files/
+chmod 777 -R media/
+chmod 777 -R engine/Shopware/Plugins/Community/
+chmod 777 -R logs/
+chmod 777 -R engine/Shopware/Plugins/Default/
+chmod 777 -R web/cache/
+chmod 777 -R recovery/
+chmod 777 -R themes/Frontend/
+chmod 777 -R recovery/install/data/
+chmod 777 -R var/
+
 echo "Done."
