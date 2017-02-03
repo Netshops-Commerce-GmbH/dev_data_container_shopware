@@ -41,6 +41,10 @@ chmod 777 -R themes/Frontend/
 chmod 777 -R recovery/install/data/
 chmod 777 -R var/
 
+echo "Linking Shopware logs to /dev/stdout" > /dev/stdout
+
+
+
 if [ ! "$FULL_WIPE_ON_REBOOT" = "true" ] ; then
     touch $EXTRACT_PATH/recovery/install/data/install.lock
 else
