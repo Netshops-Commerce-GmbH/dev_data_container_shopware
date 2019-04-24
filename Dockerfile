@@ -7,11 +7,12 @@ VOLUME ["/var/www/src", "/var/www/html"]
 RUN apk add --no-cache \
     unzip \
     zip \
-    wget
+    wget \
+    bash
 
-ADD entrypoint.sh /root/entrypoint.sh
-RUN chmod +x /root/entrypoint.sh
+ADD ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 WORKDIR /var/www/html
 
-CMD ["/root/entrypoint.sh"]
+CMD ["/entrypoint.sh"]
