@@ -18,7 +18,6 @@ echo "Done." > /dev/stdout
 
 cd /tmp
 
-
 if [ ! -f "shopware.zip" ] ; then
 	echo "Downloading Shopware release from $SHOPWARE_RELEASE_URL." > /dev/stdout
 	wget -q $SHOPWARE_RELEASE_URL -O shopware.zip
