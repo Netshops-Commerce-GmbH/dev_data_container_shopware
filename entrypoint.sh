@@ -28,21 +28,7 @@ unzip -qq -u shopware.zip -d $EXTRACT_PATH
 
 echo "Setting correct chmods in $EXTRACT_PATH." > /dev/stdout
 cd $EXTRACT_PATH
-chmod 777 config.php
-chmod 777 -R custom/
-chmod 777 -R files/
-chmod 777 -R media/
-chmod 777 -R engine/Shopware/Plugins/Community/
-chmod 777 -R engine/Shopware/Plugins/Default/
-chmod 777 -R web/cache/
-chmod 777 -R recovery/
-chmod 777 -R themes/Frontend/
-chmod 777 -R recovery/install/data/
-chmod 777 -R var/
-
-echo "Linking Shopware logs to /dev/stdout" > /dev/stdout
-
-
+chmod 777 -R .
 
 if [ ! "$FULL_WIPE_ON_REBOOT" = "true" ] ; then
     touch $EXTRACT_PATH/recovery/install/data/install.lock
